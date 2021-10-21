@@ -3,7 +3,7 @@
 # =============================================================================
 
 objects_needed <- c(
-    "hholds"
+    "combined_dir"
 )
 
 check_exists(objects_needed)

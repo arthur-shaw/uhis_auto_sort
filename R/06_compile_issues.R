@@ -6,7 +6,8 @@ objects_needed <- c(
     "attribs",
     "food_df",
     "plots_w_indicators",
-    "parcel_plots"
+    "parcel_plots",
+    "suso_errors"
 )
 
 check_exists(objects_needed)
