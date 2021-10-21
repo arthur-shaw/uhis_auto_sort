@@ -21,7 +21,7 @@ ingest_matching_files <- function(
 ) {
 
     # find files
-    files <- fs::dir_ls(path = data_dir, recurse = FALSE, type = "file", regexp = pattern)
+    files <- fs::dir_ls(path = path, recurse = FALSE, type = "file", regexp = pattern)
 
     # print info message about files found
     cli::cli_alert_info("Matching found files: ")
@@ -153,8 +153,8 @@ apply_val_labels <- function(
 # Check that necessary objects exist
 # =============================================================================
 
-if (!exists("data_dir")) {
-    stop("The folder `data_dir` has not been defined.")
+if (!exists("combined_dir")) {
+    stop("The folder `combined_dir` has not been defined.")
 }
 
 # =============================================================================
