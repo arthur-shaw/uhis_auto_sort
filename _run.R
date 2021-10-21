@@ -8,6 +8,16 @@
 proj_dir    <- ""
 
 # =============================================================================
+# Questionnaire whose data to review
+# =============================================================================
+
+# provide a string that uniquely identifies the questionnaire. this can be:
+# - full name
+# - sub-string
+# - regular expression
+qnr_expr <- ""
+
+# =============================================================================
 # Program behavior parameters
 # =============================================================================
 
