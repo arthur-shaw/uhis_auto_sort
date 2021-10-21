@@ -2,26 +2,6 @@
 # Check that necessary objects exist
 # =============================================================================
 
-check_exists <- function(object_names) {
-    names_sought <- object_names
-    names_found <- purrr::map_lgl(
-        .x = names_sought,
-        .f = ~ exists(.x)
-    )
-    names_missing <- names_sought[!names_found]
-    if (length(names_missing) > 0) {
-        
-        missing_list <- glue::glue_collapse(
-            glue::glue("{glue::backtick(names_found)}"), 
-            sep = ", ", 
-            last = ", and "
-        )
-
-        stop(glue::glue("The following objects are missing: {missing_list}"))
-        
-    }
-}
-
 objects_needed <- c(
     "hholds",
     "members",
