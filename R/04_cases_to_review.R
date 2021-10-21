@@ -70,7 +70,8 @@ cases_to_review <- hholds %>%
     dplyr::mutate(interview__complete = 1) %>%
     dplyr::select(
         interview__id, interview__key, interview__status,
-        complete_aas, complete_unps, complete_single_phase, complete_full_interview,
+        complete_aas, complete_unps, complete_unoma, 
+        complete_single_phase, complete_full_interview,
         interview__complete
     )
 
