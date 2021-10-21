@@ -9,6 +9,23 @@ objects_needed <- c(
 check_exists(objects_needed)
 
 # =============================================================================
+# Load all necessary data files
+# =============================================================================
+
+hholds  <- haven::read_dta(file = paste0(combined_dir, "UHIS_2021_FIELD1.dta"))
+members <- haven::read_dta(file = paste0(combined_dir, "t0_hhroster.dta"))
+assets  <- haven::read_dta(file = paste0(combined_dir, "HH_Assets.dta"))
+parcels <- haven::read_dta(file = paste0(combined_dir, "HH_PARCELS.dta"))
+plots   <- haven::read_dta(file = paste0(combined_dir, "AGRIC_PDN_PLOTS_unoma.dta"))
+suso_errors <- haven::read_dta(file = paste0(combined_dir, "interview__errors.dta"))
+
+# =============================================================================
+# Load necessary libraries
+# =============================================================================
+
+library(dplyr)
+
+# =============================================================================
 # Identify cases to review
 # =============================================================================
 
