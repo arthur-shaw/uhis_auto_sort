@@ -12,6 +12,7 @@ check_exists(objects_needed)
 # Check that zip files exist in download folder
 # =============================================================================
 
+# compile list of zip files
 downloaded_files <- fs::dir_ls(
     path = download_dir,
     recurse = FALSE,
@@ -19,6 +20,7 @@ downloaded_files <- fs::dir_ls(
     regexp = "\\.zip$"
 )
 
+# issue an error if no files
 if (length(downloaded_files) == 0) {
     stop(glue::glue("No .zip files found in the download folder: {download_dir}"))
 }

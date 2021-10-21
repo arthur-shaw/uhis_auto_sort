@@ -171,7 +171,10 @@ library(stringr)
 
 # ingest all consumption as a list of data frames
 # so that renaming functions can be applied to all data frames
-food_dfs_raw <- ingest_matching_files(path = data_dir, pattern = ".+_item_roster|Oils_roster")
+food_dfs_raw <- ingest_matching_files(
+    path = combined_dir, 
+    pattern = ".+_item_roster|Oils_roster"
+)
 
 # harmonize variable names across files
 # so that all data frames can be combined
