@@ -22,6 +22,13 @@ library(purrr)
 library(rlang)
 
 # =============================================================================
+# Subset attributes
+# =============================================================================
+
+attribs_full_interview <- attribs %>% 
+    dplyr::semi_join(cases_full_interview, by = "interview__id", "interview__key")
+
+# =============================================================================
 # Flag errors
 # =============================================================================
 
@@ -166,7 +173,7 @@ issue_work_ag_no_ag <- susoreview::create_issue(
 
 # member works in enterprise, but no hhold enterprise reported
 issue_work_biz_no_biz <- susoreview::create_issue(
-    df_attribs = attribs,
+    df_attribs = attribs_full_interview,
     vars = c("work_in_hh_business", "num_businesses"),
     where = work_in_hh_business == 1 & num_businesses == 0,
     type = 1,
@@ -344,7 +351,7 @@ issue_where_mixed_stand_one_crop <- susoreview::make_issue_in_roster(
 
 # land used for business, but no enterprise reported
 issue_biz_land_no_biz <- susoreview::create_issue(
-    df_attribs = attribs,
+    df_attribs = attribs_full_interview,
     vars = c("parcel_for_business", "run_business"),
     where = parcel_for_business == 1 & run_business == 0,
     type = 1,
@@ -380,7 +387,7 @@ issue_ag_parcels_not_do_ag <- susoreview::create_issue(
 
 # own home, but no residential parcel reported
 issue_own_home_no_home_parcel <- susoreview::create_issue(
-    df_attribs = attribs,
+    df_attribs = attribs_full_interview,
     vars = c("owns_home", "parcel_for_home"),
     where = owns_home == 1 & parcel_for_home == 0,
     type = 1,
@@ -393,7 +400,7 @@ issue_own_home_no_home_parcel <- susoreview::create_issue(
 
 # owns non-ag land, but no non-ag land reported
 issue_own_ag_land_but_no_ag <- susoreview::create_issue(
-    df_attribs = attribs,
+    df_attribs = attribs_full_interview,
     vars = c("owns_non_ag_land", "parcel_for_non_ag"),
     where = owns_non_ag_land == 1 & parcel_for_non_ag == 0,
     type = 1,
@@ -410,7 +417,7 @@ issue_own_ag_land_but_no_ag <- susoreview::create_issue(
 
 # engaged in agriculture, but no labor inputs of any type reported
 issue_ag_but_no_ag_labor <- susoreview::create_issue(
-    df_attribs = attribs,
+    df_attribs = attribs_full_interview,
     vars = c("raise_crops", "any_non_hh_ag_labor", "any_hh_ag_labor"),
     where = raise_crops == 1 & any_non_hh_ag_labor == 0 & any_hh_ag_labor == 0,
     type = 1,
