@@ -59,7 +59,7 @@ attrib_num_businesses <- cases_full_interview %>%
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # engaged in agriculture
-attrib_raises_crops <- cases_full_interview %>%
+attrib_raises_crops <- cases_to_review %>%
     dplyr::left_join(hholds, by = c("interview__id", "interview__key")) %>%
     susoreview::create_attribute(
         condition = s19q01 == 1,
@@ -68,7 +68,7 @@ attrib_raises_crops <- cases_full_interview %>%
     )
 
 # intend to be engaged in ag
-attrib_intend_raise_crops <- cases_full_interview %>%
+attrib_intend_raise_crops <- cases_to_review %>%
     dplyr::left_join(hholds, by = c("interview__id", "interview__key")) %>%
     susoreview::create_attribute(
         condition = s19q02 == 1,
@@ -77,7 +77,7 @@ attrib_intend_raise_crops <- cases_full_interview %>%
     )
 
 # engaged in livestock
-attrib_livestock <- cases_full_interview %>%
+attrib_livestock <- cases_to_review %>%
     dplyr::left_join(hholds, by = c("interview__id", "interview__key")) %>%
     susoreview::create_attribute(
         condition = s19q03 == 1,
@@ -86,7 +86,7 @@ attrib_livestock <- cases_full_interview %>%
     )
 
 # intend to be engaged in livestock
-attrib_intend_livestock <- cases_full_interview %>%
+attrib_intend_livestock <- cases_to_review %>%
     dplyr::left_join(hholds, by = c("interview__id", "interview__key")) %>%
     susoreview::create_attribute(
         condition = s19q04 == 1,
@@ -186,7 +186,7 @@ attrib_food_away_from_home <- cases_full_interview %>%
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # any household labor inputs
-attrib_any_hh_ag_labor <- cases_single_phase %>%
+attrib_any_hh_ag_labor <- cases_to_review %>%
     dplyr::left_join(members, by = c("interview__id", "interview__key")) %>%
     susoreview::any_obs(
         where = ah3aq02_s2 == 1,
@@ -1050,7 +1050,8 @@ attrib_owns_non_ag_land <- cases_full_interview %>%
 # Parcels
 # -----------------------------------------------------------------------------
 
-parcel_use <- parcels %>%
+parcel_use <- cases_to_review %>%
+    dplyr::left_join(parcels, by = c("interview__id", "interview__key")) %>%
     dplyr::select(interview__id, interview__key, dplyr::starts_with("hp2q21_1"))
 
 # number of ag parcels
