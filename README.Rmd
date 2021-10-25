@@ -179,7 +179,7 @@ Once the preparation above completed and saved, it is time to run the program. T
 - Run the program
 - Accept to update packages, if prompted
 
-After openting the file `_run.R`, RStudio will display a message like the following:
+After opening the file `_run.R`, RStudio will display a message like the following:
 
 ![](docs/renv_loads_dependencies_1.png)
 
