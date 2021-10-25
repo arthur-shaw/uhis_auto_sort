@@ -357,7 +357,7 @@ issue_biz_land_no_biz <- susoreview::create_issue(
     type = 1,
     desc = "Business land, but no business",
     comment = paste0(
-        "ERROR: Parcel reported being used for a business, but the household reports not running a business.",
+        "ERROR: Parcel reported being used for a business, but the household reports not running a business. ",
         "Please confirm which information is correct: parcel use or enterprise."        
     )
 )
@@ -376,7 +376,7 @@ issue_ag_parcels_not_do_ag <- susoreview::create_issue(
     type = 1,
     desc = "Have ag parcel(s), but not involved in ag",
     comment = paste0(
-        "ERROR: Household owns at least 1 agricultural partcel, but is not engaged in any type of agriculture.",
+        "ERROR: Household owns at least 1 agricultural partcel, but is not engaged in any type of agriculture. ",
         "Please check with the household which information is correct: parcel use or engagement in agriculture or livestock."
     )
 )
@@ -393,7 +393,7 @@ issue_own_home_no_home_parcel <- susoreview::create_issue(
     type = 1,
     desc = "Home owned, but no residential parcel reported",
     comment = paste0(
-        "ERROR: Household owns their residence, but no residential parcel was reported.",
+        "ERROR: Household owns their residence, but no residential parcel was reported. ",
         "Please confirm which information is correct: home ownership or parcel listing."
     )
 )
@@ -406,7 +406,7 @@ issue_own_ag_land_but_no_ag <- susoreview::create_issue(
     type = 1,
     desc = "Non-ag land owned, but no non-ag land reported",
     comment = paste0(
-        "ERROR: Household owns non-agricultural land, but no non-agricultural parcel reported.",
+        "ERROR: Household owns non-agricultural land, but no non-agricultural parcel reported. ",
         "Please confirm which information is correct: non-ag land ownership or parcel listing."
     )
 )
@@ -423,7 +423,7 @@ issue_ag_but_no_ag_labor <- susoreview::create_issue(
     type = 1,
     desc = "Engaged in ag, but no labor inputs reported",
     comment = paste0(
-        "ERROR: Household engaged in agricultural, but no labor inputs reported.",
+        "ERROR: Household engaged in agricultural, but no labor inputs reported. ",
         "Please ask the household again about their household and non-household labor inputs."
     )
 )
@@ -444,7 +444,7 @@ issue_parcel_cropped_plots_not <- susoreview::create_issue(
     type = 1,
     desc = "Parcel cropped, but none of its plots is",
     comment = paste0(
-        "ERROR: At least 1 parcel is used for crops, but none of its plots is planted.",
+        "ERROR: At least 1 parcel is used for crops, but none of its plots is planted. ",
         "Please check with the household which information is correct: parcel use or plot use."
     )
 )
@@ -472,7 +472,7 @@ issue_parcel_fallow_plots_not <- susoreview::create_issue(
     type = 1,
     desc = "Parcel fallow, but none of its plots is",
     comment = paste0(
-        "ERROR: At least 1 parcel is fallow, but none of its plots is fallow.",
+        "ERROR: At least 1 parcel is fallow, but none of its plots is fallow. ",
         "Please check with the household which information is correct: parcel use or plot use."
     )
 )
