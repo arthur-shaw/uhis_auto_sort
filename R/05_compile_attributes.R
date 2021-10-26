@@ -348,7 +348,7 @@ grain_vals <- c(
     110,  # chapati, 
     109, # bread, 
     115, # puffed rice, 
-    101, 102, # maize/corn, 
+    101, 102, 103, # maize/corn, 
     # pressed rice, 
     108, # noodles, 
     # millet, 
