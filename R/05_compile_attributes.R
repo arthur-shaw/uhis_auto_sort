@@ -185,8 +185,12 @@ attrib_food_away_from_home <- cases_full_interview %>%
         attrib_vars = "FC02|FC05|FC07|FC09|FC11|FC13|FC15"
     )
 
+attrib_food_away_from_home_present <- cases_full_interview %>%
     dplyr::left_join(members, by = c("interview__id", "interview__key")) %>%
     susoreview::any_obs(
+        where = FC01 == 1,
+        attrib_name = "fafh_present",
+        attrib_vars = "FC01"
     )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
