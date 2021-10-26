@@ -565,13 +565,13 @@ issue_w_24h_v_7d <- purrr::pmap_dfr(
     .l = list(w_cons_24h, w_cons_7d, w_item_names),
     .f = ~ susoreview::create_issue(
         df_attribs = attribs,
-        vars = c(..1, ..2),
+        vars = c(..1, ..2, "fafh_present", "food_away_from_home", "all_food_items_answered"),
         where = !!rlang::parse_quo(
-            glue::glue("{..1} == 1 & {..2} == 0"),
+            glue::glue("{..1} == 1 & {..2} == 0 & (fafh_present == 1 & food_away_from_home == 0 & all_food_items_answered == 1)"),
             rlang::global_env()
         ),
         type = 1,
-        desc = glue::glue("Consumed {..3} in past 24 hours, but not 7 days"),
+        desc = glue::glue("Woman consumed {..3} in past 24 hours, but not hhold in 7 days"),
         comment = paste0(
             glue::glue("ERROR: a woman member of the household consumed {..3} "),
             "in the past 24 hours , but not in the past 7 days. ", 
@@ -648,13 +648,13 @@ issue_c_24h_v_7d <- purrr::pmap_dfr(
     .l = list(c_cons_24h, c_cons_7d, c_item_names),
     .f = ~ susoreview::create_issue(
         df_attribs = attribs,
-        vars = c(..1, ..2),
+        vars = c(..1, ..2, "fafh_present", "food_away_from_home", "all_food_items_answered"),
         where = !!rlang::parse_quo(
-            glue::glue("{..1} == 1 & {..2} == 0"),
+            glue::glue("{..1} == 1 & {..2} == 0 & (fafh_present == 1 & food_away_from_home == 0 & all_food_items_answered == 1)"),
             rlang::global_env()
         ),
         type = 1,
-        desc = glue::glue("Consumed {..3} in past 24 hours, but not 7 days"),
+        desc = glue::glue("Child consumed {..3} in past 24 hours, but not hhold in 7 days"),
         comment = paste0(
             glue::glue("ERROR: a child member of the household consumed {..3} "),
             "in the past 24 hours , but not in the past 7 days. ", 
