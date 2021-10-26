@@ -117,17 +117,6 @@ attrib_non_food_consumption <- cases_full_interview %>%
         attrib_name = "non_food_consumption"
     )
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Non-hhold ag labor inputs
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-attrib_any_non_hh_ag_labor <- cases_full_interview %>%
-    dplyr::left_join(hholds, by = c("interview__id", "interview__key")) %>%
-    susoreview::count_vars(
-        var_pattern = "ah3bq01",
-        attrib_name = "any_non_hh_ag_labor"
-    )
-
 # -----------------------------------------------------------------------------
 # Member
 # -----------------------------------------------------------------------------
@@ -181,17 +170,8 @@ attrib_food_away_from_home <- cases_full_interview %>%
         attrib_vars = "FC02|FC05|FC07|FC09|FC11|FC13|FC15"
     )
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Household ag labor inputs
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# any household labor inputs
-attrib_any_hh_ag_labor <- cases_to_review %>%
     dplyr::left_join(members, by = c("interview__id", "interview__key")) %>%
     susoreview::any_obs(
-        where = ah3aq02_s2 == 1,
-        attrib_name = "any_hh_ag_labor",
-        attrib_vars = "ah3aq02_s2"
     )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

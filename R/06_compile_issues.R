@@ -412,23 +412,6 @@ issue_own_ag_land_but_no_ag <- susoreview::create_issue(
 )
 
 # -----------------------------------------------------------------------------
-# Labor missing
-# -----------------------------------------------------------------------------
-
-# engaged in agriculture, but no labor inputs of any type reported
-issue_ag_but_no_ag_labor <- susoreview::create_issue(
-    df_attribs = attribs_full_interview,
-    vars = c("raise_crops", "any_non_hh_ag_labor", "any_hh_ag_labor"),
-    where = raise_crops == 1 & any_non_hh_ag_labor == 0 & any_hh_ag_labor == 0,
-    type = 1,
-    desc = "Engaged in ag, but no labor inputs reported",
-    comment = paste0(
-        "ERROR: Household engaged in agricultural, but no labor inputs reported. ",
-        "Please ask the household again about their household and non-household labor inputs."
-    )
-)
-
-# -----------------------------------------------------------------------------
 # Parcel-plot inconsistencies
 # -----------------------------------------------------------------------------
 
