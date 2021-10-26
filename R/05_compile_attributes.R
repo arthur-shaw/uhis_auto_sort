@@ -98,6 +98,21 @@ attrib_intend_livestock <- cases_to_review %>%
 # Food at home
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# whether all food items have yes or no answer
+attrib_all_food_items_answered <- cases_full_interview %>%
+    dplyr::left_join(hholds, by = c("interview__id", "interview__key")) %>%
+    dplyr::mutate(
+        all_food_items_answered = dplyr::if_all(
+            .cols = dplyr::matches("countMissing(Cereals|Starches|Meats|Pulses|Veges|Bev|Oils)"),
+            .fns = ~ .x == 0
+        )
+    ) %>%
+    susoreview::extract_attribute(
+        var = all_food_items_answered,
+        attrib_name = "all_food_items_answered",
+        attrib_vars = "countMissing(Cereals|Starches|Meats|Pulses|Veges|Bev|Oils)"
+    )
+
 # number of food items consumed at home
 attrib_num_food_items <- cases_full_interview %>%
     dplyr::left_join(hholds, by = c("interview__id", "interview__key")) %>%

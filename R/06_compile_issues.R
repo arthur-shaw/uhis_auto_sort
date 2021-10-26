@@ -66,6 +66,22 @@ issue_too_many_heads <- susoreview::create_issue(
 # Food consumption
 # -----------------------------------------------------------------------------
 
+# some 7d food items not answered with yes/no
+issue_some_food_items_unanswered <- susoreview::create_issue(
+    df_attribs = attribs_full_interview,
+    vars = "all_food_items_answered",
+    where = all_food_items_answered == 0,
+    type = 1,
+    desc = "Not all 7d food items answered",
+    comment = paste0(
+        "ERROR: Some food items in the past 7 days were not answered. ",
+        "In section 7B1, all food items must have a yes or no answer. ", 
+        "There is at least one that does not. ", 
+        "Please ask the household about their consumption of each ",
+        "currently unanswered food item."
+    )
+)
+
 # no food consumption inside household
 issue_no_home_food_cons <- susoreview::create_issue(
     df_attribs = attribs,
