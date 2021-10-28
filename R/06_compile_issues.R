@@ -693,10 +693,19 @@ interview_stats <- purrr::map_dfr(
     dplyr::rename(interview__id = InterviewId, interview__key = InterviewKey)
 
 # prepare number of legit missing file
-# TODO: see if any legit unanswered
-# num_legit_miss <- num_legit_miss %>%
-#     rename(n_legit_miss = numLegitMiss) %>%
-#     select(interview__id, interview__key, n_legit_miss)
+foods_wo_units <- c(
+    205,    # jackfruit
+    235     # soda ash
+)
+
+tot_n_legit_miss <- food_df %>%
+    dplyr::semi_join(cases_full_interview, by = c("interview__id", "interview__key")) %>%
+    dplyr::mutate(
+        missing_food_ok = (food__id %in% foods_wo_units) & (haven::is_tagged_na(CEB05))
+    ) %>%
+    dplyr::group_by(interview__id, interview__key) %>%
+    dplyr::summarise(n_legit_miss = sum(missing_food_ok, na.rm = TRUE)) %>%
+    dplyr::ungroup()
 
 # add error if interview completed, but questions left unanswered
 # returns issues data supplemented with unanswered question issues
@@ -704,9 +713,8 @@ issues_plus_unanswered <- susoreview::add_issue_if_unanswered(
     df_cases_to_review = cases_to_review,
     df_interview_stats = interview_stats,
     df_issues = issues,
-    n_unanswered_ok = 0
-    # ,
-    # df_legit_miss = num_legit_miss
+    n_unanswered_ok = 0,
+    df_legit_miss = tot_n_legit_miss
 )
 
 # -----------------------------------------------------------------------------
