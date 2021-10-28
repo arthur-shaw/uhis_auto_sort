@@ -17,7 +17,6 @@ members <- haven::read_dta(file = paste0(combined_dir, "t0_hhroster.dta"))
 assets  <- haven::read_dta(file = paste0(combined_dir, "HH_Assets.dta"))
 parcels <- haven::read_dta(file = paste0(combined_dir, "HH_PARCELS.dta"))
 plots   <- haven::read_dta(file = paste0(combined_dir, "AGRIC_PDN_PLOTS_unoma.dta"))
-suso_errors <- haven::read_dta(file = paste0(combined_dir, "interview__errors.dta"))
 
 # =============================================================================
 # Check that data files successfully loaded
@@ -95,3 +94,54 @@ cases_unps <- dplyr::filter(cases_to_review, complete_unps == 1)
 cases_unoma <- dplyr::filter(cases_to_review, complete_unoma == 1)
 cases_single_phase <- dplyr::filter(cases_to_review, complete_single_phase == 1)
 cases_full_interview <- dplyr::filter(cases_to_review, complete_full_interview == 1)
+
+# =============================================================================
+# Load data
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Define function
+# -----------------------------------------------------------------------------
+
+load_filtered <- function(
+    dir,
+    file,
+    name = gsub(pattern = "\\.dta", replacement = "", x = file),
+    filter_df
+) {
+    df <- haven::read_dta(file = paste0(dir, file))
+    
+    df_filtered <- df %>%
+        dplyr::semi_join(filter_df, by = c("interview__id", "interview__key"))
+    
+    assign(
+        x = name,
+        value = df_filtered,
+        envir = .GlobalEnv
+    )
+    
+}
+
+# -----------------------------------------------------------------------------
+# Load filtered files
+# -----------------------------------------------------------------------------
+
+# TODO: add "interview__diagnostics.dta" once server upgraded
+files <- c(
+    "interview__errors.dta", "interview__comments.dta"
+)
+# TODO: add "suso_diagnostics" once server upgraded
+file_names <- c(
+    "suso_errors", "comments"
+)
+
+purrr::walk2(
+    .x = files, 
+    .y = file_names,
+    .f = ~ load_filtered(
+        dir = combined_dir,
+        file = .x,
+        name = .y,
+        filter_df = cases_to_review
+    )
+)
