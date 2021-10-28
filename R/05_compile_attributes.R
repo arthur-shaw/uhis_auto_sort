@@ -327,14 +327,38 @@ attrib_child_24h <- purrr::map2(
 # Missing quantity, unit, or size for food item
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+foods_wo_units <- c(
+    205,    # jackfruit
+    235     # soda ash
+)
+
 attrib_food_item_missing_info <- food_df %>%
     susoreview::any_obs(
         where = (
-            haven::is_tagged_na(CEB05) |
-            haven::is_tagged_na(CEB06) |
-            haven::is_tagged_na(CEB07) |
-            haven::is_tagged_na(CEB10) |
-            haven::is_tagged_na(CEB12)
+            # for food without units
+            (
+                (food__id %in% foods_wo_units) &
+                (
+                    haven::is_tagged_na(CEB06) |
+                    haven::is_tagged_na(CEB07) |
+                    haven::is_tagged_na(CEB10) |
+                    haven::is_tagged_na(CEB12)
+                )
+            )
+
+            |
+
+            # for all other food
+            (
+                (!food__id %in% foods_wo_units) &
+                (
+                    haven::is_tagged_na(CEB05) |
+                    haven::is_tagged_na(CEB06) |
+                    haven::is_tagged_na(CEB07) |
+                    haven::is_tagged_na(CEB10) |
+                    haven::is_tagged_na(CEB12)
+                )
+            )                
         ),
         attrib_name = "food_item_missing_info",
         attrib_vars = "CEB0[567]|CEB1[02]"
