@@ -26,8 +26,7 @@ objects_needed <- c(
     "hholds",
     "members",
     "assets",
-    "parcels",
-    "suso_errors"
+    "parcels"
 )
 
 check_exists(objects_needed)
