@@ -592,15 +592,15 @@
     },
     "susoapi": {
       "Package": "susoapi",
-      "Version": "0.1.1",
+      "Version": "0.1.2",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "susoapi",
       "RemoteUsername": "arthur-shaw",
       "RemoteRef": "HEAD",
-      "RemoteSha": "d6aa05527ffefd3648bebececf89e4403e2b8bef",
-      "Hash": "1f8107bc726d58ff6c17b2a624d31e82"
+      "RemoteSha": "b46e9c7c4bb41880a2fd3b850b71fcbfb1674273",
+      "Hash": "e00883ce5fe447e364beb2d7bc26abf7"
     },
     "susoflows": {
       "Package": "susoflows",
@@ -612,8 +612,8 @@
       "RemoteRepo": "susoflows",
       "RemoteUsername": "arthur-shaw",
       "RemoteRef": "HEAD",
-      "RemoteSha": "2e076a749a9037917d6fb42998a79d6cc5a86258",
-      "Hash": "f73fdaab2c6b6a1c75dd009c5072b759"
+      "RemoteSha": "367c0a56d9be5338bdbf370629720318cb899cf3",
+      "Hash": "b1e329c6feb74a6085d1b0e786c4c424"
     },
     "susoreview": {
       "Package": "susoreview",
@@ -625,8 +625,8 @@
       "RemoteRepo": "susoreview",
       "RemoteUsername": "arthur-shaw",
       "RemoteRef": "HEAD",
-      "RemoteSha": "b6541a6d8801cad3a6908e1751aa4533dbb82309",
-      "Hash": "5458c3d751ae3be4b432ff9b73a7f3ca"
+      "RemoteSha": "3882d8691676e165cf932a00f05d0e18a147841b",
+      "Hash": "b7e2aeeacf65514ccc8c7b0c1466336b"
     },
     "sys": {
       "Package": "sys",
@@ -739,6 +739,13 @@
       "Source": "Repository",
       "Repository": "CRAN",
       "Hash": "ad03909b44677f930fa156d47d7a3aeb"
+    },
+    "writexl": {
+      "Package": "writexl",
+      "Version": "1.4.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "edd181b6e10c87497db16d1f8c0d4ed5"
     },
     "xfun": {
       "Package": "xfun",
