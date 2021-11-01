@@ -29,6 +29,14 @@ qnr_expr <- ""
 # - ApprovedByHeadquarters: 130
 statuses_to_reject <- c(100, 120)
 
+# Provide a comma-separated list of issue types to reject
+# {susoreview} uses the following codes:
+# - 1 = Reject
+# - 2 = Comment to post
+# - 3 = Survey Solutions validation error
+# - 4 = Review
+issues_to_reject <- c(1)
+
 # Whether to reject interviews recommended for rejection
 # - If TRUE, the program will instruct the server to reject these interviews.
 # - If FALSE, the program will not.
