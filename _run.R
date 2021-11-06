@@ -53,16 +53,16 @@ renv::restore()
 # Provide Survey Solutions details
 # =============================================================================
 
-server      <- ""
-workspace   <- ""
-user        <- ""
-password    <- ""
+# server      <- ""
+# workspace   <- ""
+# user        <- ""
+# password    <- ""
 
-susoapi::set_credentials(
-    server = server,
-    user = user,
-    password = password
-)
+# susoapi::set_credentials(
+#     server = server,
+#     user = user,
+#     password = password
+# )
 
 # =============================================================================
 # Confirm that inputs provided
@@ -138,26 +138,26 @@ if (!is.logical(should_reject)) {
 # Specified
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-suso_details <- c(
-    "server",
-    "workspace",
-    "user",
-    "password"
-)
+# suso_details <- c(
+#     "server",
+#     "workspace",
+#     "user",
+#     "password"
+# )
 
-purrr::walk(
-    .x = suso_details,
-    .f = ~ object_exists(.x)
-)
+# purrr::walk(
+#     .x = suso_details,
+#     .f = ~ object_exists(.x)
+# )
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Valid
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-susoapi::check_credentials(
-    workspace = workspace,
-    verbose = TRUE
-)
+# susoapi::check_credentials(
+#     workspace = workspace,
+#     verbose = TRUE
+# )
 
 # =============================================================================
 # Run scripts

@@ -683,48 +683,49 @@ rm(list = ls(pattern = "^issue_"))
 # ... if questions left unanswered
 # -----------------------------------------------------------------------------
 
-# get interview statistics
-# creates data frame with interview stats
-interviews <- cases_to_review$interview__id
-interview_stats <- purrr::map_dfr(
-        .x = interviews,
-        .f = ~ susoapi::get_interview_stats(interview_id = .x)
-    ) %>%
-    dplyr::rename(interview__id = InterviewId, interview__key = InterviewKey)
+# # get interview statistics
+# # creates data frame with interview stats
+# interviews <- cases_to_review$interview__id
+# interview_stats <- purrr::map_dfr(
+#         .x = interviews,
+#         .f = ~ susoapi::get_interview_stats(interview_id = .x)
+#     ) %>%
+#     dplyr::rename(interview__id = InterviewId, interview__key = InterviewKey)
 
-# prepare number of legit missing file
-foods_wo_units <- c(
-    205,    # jackfruit
-    235     # soda ash
-)
+# # prepare number of legit missing file
+# foods_wo_units <- c(
+#     205,    # jackfruit
+#     235     # soda ash
+# )
 
-tot_n_legit_miss <- food_df %>%
-    dplyr::semi_join(cases_full_interview, by = c("interview__id", "interview__key")) %>%
-    dplyr::mutate(
-        missing_food_ok = (food__id %in% foods_wo_units) & (haven::is_tagged_na(CEB05))
-    ) %>%
-    dplyr::group_by(interview__id, interview__key) %>%
-    dplyr::summarise(n_legit_miss = sum(missing_food_ok, na.rm = TRUE)) %>%
-    dplyr::ungroup()
+# tot_n_legit_miss <- food_df %>%
+#     dplyr::semi_join(cases_full_interview, by = c("interview__id", "interview__key")) %>%
+#     dplyr::mutate(
+#         missing_food_ok = (food__id %in% foods_wo_units) & (haven::is_tagged_na(CEB05))
+#     ) %>%
+#     dplyr::group_by(interview__id, interview__key) %>%
+#     dplyr::summarise(n_legit_miss = sum(missing_food_ok, na.rm = TRUE)) %>%
+#     dplyr::ungroup()
 
-# add error if interview completed, but questions left unanswered
-# returns issues data supplemented with unanswered question issues
-issues_plus_unanswered <- susoreview::add_issue_if_unanswered(
-    df_cases_to_review = cases_to_review,
-    df_interview_stats = interview_stats,
-    df_issues = issues,
-    n_unanswered_ok = 0,
-    df_legit_miss = tot_n_legit_miss
-)
+# # add error if interview completed, but questions left unanswered
+# # returns issues data supplemented with unanswered question issues
+# issues_plus_unanswered <- susoreview::add_issue_if_unanswered(
+#     df_cases_to_review = cases_to_review,
+#     df_interview_stats = interview_stats,
+#     df_issues = issues,
+#     n_unanswered_ok = 0,
+#     df_legit_miss = tot_n_legit_miss
+# )
 
 # -----------------------------------------------------------------------------
 # ... if any SuSo errors
 # -----------------------------------------------------------------------------
 
 # add issue if there are SuSo errors
-issues_plus_miss_and_suso <- susoreview::add_issues_for_suso_errors(
+# issues_plus_miss_and_suso 
+issues <- susoreview::add_issues_for_suso_errors(
     df_cases_to_review = cases_to_review,
     df_errors = suso_errors,
     issue_type = 3,
-    df_issues = issues_plus_unanswered
+    df_issues = issues # issues_plus_unanswered
 )
