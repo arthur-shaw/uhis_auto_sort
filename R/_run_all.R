@@ -102,7 +102,7 @@ source(paste0(script_dir, "07_make_decisions.R"))
 # }
 
 # save decisions to disk
-print("Saving decisisons to disk")
+print("Saving decisions to disk")
 source(paste0(script_dir, "09_save_results.R"))
 
 }
