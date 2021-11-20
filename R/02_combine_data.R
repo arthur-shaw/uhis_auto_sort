@@ -52,7 +52,7 @@ unpack_to_dir <- function(zipfile) {
     parent_dir <- fs::path_dir(zipfile)
     file_name <- fs::path_file(zipfile)
     unpack_name <- fs::path_ext_remove(file_name) 
-    unpack_dir <- paste0(parent_dir, "/", unpack_name, "/")
+    unpack_dir <- paste0(parent_dir, "/", unpack_name)
 
     zip::unzip(
         zipfile = zipfile,
