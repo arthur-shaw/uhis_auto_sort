@@ -89,14 +89,14 @@ revised_decisions <- susoreview::flag_persistent_issues(
 to_reject_ids <- revised_decisions[["to_reject"]] %>%
     dplyr::select(interview__id) %>%
     dplyr::left_join(cases_to_review, by = "interview__id") %>%
-    dplyr::select(interview__id, interview__key, PHHID, XHHID)
+    dplyr::select(interview__id, interview__key, PHHID, XHHID, sample_type)
 
 to_reject_issues <- to_reject_ids %>%
     # issues_plus_miss_and_suso
     dplyr::left_join(issues, by = c("interview__id", "interview__key")) %>%
     dplyr::filter(issue_type %in% c(issues_to_reject, 2)) %>%
     dplyr::select(
-        interview__id, interview__key, PHHID, XHHID,
+        interview__id, interview__key, PHHID, XHHID, sample_type,
         dplyr::starts_with("issue_")
     )
 
@@ -109,7 +109,7 @@ to_reject_api <- revised_decisions[["to_reject"]]
 to_review_ids <- to_review %>% # decisions[["to_review"]]
     dplyr::select(interview__id) %>%
     dplyr::left_join(cases_to_review, by = "interview__id") %>%
-    dplyr::select(interview__id, interview__key, PHHID, XHHID)
+    dplyr::select(interview__id, interview__key, PHHID, XHHID, sample_type)
 
 to_review_issues <- to_review_ids %>%
     dplyr::left_join(
@@ -129,7 +129,7 @@ to_review_api <- susoreview::add_rejection_msgs(
 
 to_follow_up_ids <- revised_decisions[["to_follow_up"]] %>%
     dplyr::left_join(cases_to_review, by = "interview__id") %>%
-    dplyr::select(interview__id, interview__key, PHHID, XHHID)
+    dplyr::select(interview__id, interview__key, PHHID, XHHID, sample_type)
 
 to_follow_up_issues <- revised_decisions[["to_follow_up"]] %>%
     # issues_plus_miss_and_suso
