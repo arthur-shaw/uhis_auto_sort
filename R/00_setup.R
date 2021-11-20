@@ -17,6 +17,10 @@ output_dir <- paste0(proj_dir, "output/")    # /output/
 # Purge stale data
 # =============================================================================
 
+# -----------------------------------------------------------------------------
+# Downloaded data
+# -----------------------------------------------------------------------------
+
 # # remove zip files
 # zips_to_delete <- fs::dir_ls(
 #     path = download_dir, 
@@ -33,6 +37,19 @@ output_dir <- paste0(proj_dir, "output/")    # /output/
 #     type = "directory"
 # )
 # fs::dir_delete(dirs_to_delete)
+
+# -----------------------------------------------------------------------------
+# Combined data
+# -----------------------------------------------------------------------------
+
+# remove zip files
+dta_to_delete <- fs::dir_ls(
+    path = combined_dir, 
+    recurse = FALSE, 
+    type = "file", 
+    regexp = "\\.dta$"
+)
+fs::file_delete(dta_to_delete)
 
 # =============================================================================
 # Purge stale outputs
